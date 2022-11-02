@@ -1,28 +1,32 @@
 @extends('layouts.main')
 @section('title', 'HDC Events')
 @section('content')
-<h1>Algum Título</h1> 
-<img src="/img/banner.jpg" alt="Banner">
-@if(10>25)
-    <p>A condição é true</p>
-@endif
 
-<p>{{ $nome }}</p>
-@if($nome=="Albor")
-    <p>O Nome é Albor</p>
-@elseif($nome=="Alexandre")
-    <p>O Nome é {{ $nome }}</p>
-@else
-    <p>O nome não é Alex</p>            
- @endif
+<div id="search-container" class="col-md-12">
+    <h1>Busque um evento</h1>
+    <form action="">
+        <input type="text" id="search" name="search" class="form-control" placeholder="Procurar ...">
+    </form>
+</div>
+<div id="events-container" class="col-md-12">
+    <h2>próximos eventos</h2>
+    <p class="subtitle">Veja os eventos dos próximos dias</p>
 
-@php
-$name= 'Adorado';
-echo $name;
-@endphp
-{{-- Este é o comentário do blade --}}
-@foreach ($nomes as $no) 
-<p>{{ $loop->index }}</p>
-<p> {{ $no }}</p>
-@endforeach
+    <div id="cards-container" class="row">
+        @foreach ($events as $event)
+            <div class="card col-md-3">
+                <img src="/img/event_placeholder.jpg" alt="{{ $event->title }}">
+                <div class="card-body">
+                    <p class="card-date">02/11/2022</p>
+                    <h5 class="card-title">{{ $event->title }}</h5>
+                    <p class="card-participants">X participantes</p>
+                    <a href="#" class="btn btn-primary">Saber Mais</a>
+
+
+                </div>
+            </div> 
+        @endforeach
+    </div>
+</div>
+
 @endsection
