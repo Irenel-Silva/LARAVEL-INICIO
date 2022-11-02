@@ -9,8 +9,8 @@ class EventController extends Controller
     //
     public function index(){
         $nome= "Alexandre";
-    $nomes=['Albano','Teresa', 'Helena', 'Isabel', 'Antonia', 'joão', 'Emanuel', 'Natalicio'];
-    return view('welcome', ['nome'=>$nome, 'nomes'=>$nomes]);
+        $nomes=['Albano','Teresa', 'Helena', 'Isabel', 'Antonia', 'joão', 'Emanuel', 'Natalicio'];
+        return view('welcome', ['nome'=>$nome, 'nomes'=>$nomes]);
     }
 
     public function create(){
