@@ -7,7 +7,7 @@
         <title>@yield('title')</title>
         <!-- Fonte do Google -->
         <link href="https://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet">
-        
+
         <!-- CSS Bootstrap -->
         <!-- CSS only -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -31,12 +31,26 @@
                         <li class="nav-item">
                             <a href="/events/create" class="nav-link">Criar Eventos</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="/" class="nav-link">Entrar</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/" class="nav-link">Cadastrar</a>
-                        </li>
+                        @auth
+                            <li class="nav-item">
+                                <a href="/dashboard" class="nav-link">Meus Eventos</a>
+                            </li>
+                            <li class="nav-item">
+                                <form action="/logout" method="POST">
+                                    @csrf
+                                    <a href="/logout" class="nav-link" onclick="event.preventDefault();
+                                        this.closest('form').submit();">Sair</a>
+                                </form>
+                            </li>
+                        @endauth
+                        @guest
+                         <li class="nav-item">
+                            <a href="/login" class="nav-link">Entrar</a>
+                         </li>
+                            <li class="nav-item">
+                            <a href="/register" class="nav-link">Cadastrar</a>
+                            </li>
+                        @endguest
                     </ul>
                 </div>
             </nav>
@@ -51,12 +65,12 @@
                 </div>
             </div>
         </main>
-        
+
         <footer>
             <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
             <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
             <p>HDC Events &copy;2022</p>
         </footer>
     </body>
-    
+
 </html>
